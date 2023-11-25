@@ -1,8 +1,8 @@
 import subprocess as sp
+from prettytable import PrettyTable 
 import pymysql
 import pymysql.cursors
 import colours
-from prettytable import PrettyTable 
 import display
 import maskpass
 from conandexec import execute
@@ -46,8 +46,6 @@ while(1):
     # password = maskpass.askpass(prompt="Password:::", mask="*")
 
     try:
-        # Set db name accordingly which have been create by you
-        # Set host to the server's address if you don't want to use local SQL server
         con = connecttosql(username,password)
         with con.cursor() as cur:
             while(1):

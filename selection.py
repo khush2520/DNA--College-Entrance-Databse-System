@@ -1,6 +1,7 @@
 import subprocess as sp
 import colours
 from conandexec import execute
+from conandexec import closeconnection
 def colleges():
     query = 'SELECT CollegeName FROM Colleges WHERE MedianPlacement > 10;'
     execute(query)
@@ -33,7 +34,7 @@ def selection():
         elif ch == '3' or ch == 'back':
             return
         elif ch == '4' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 

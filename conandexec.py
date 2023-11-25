@@ -41,7 +41,7 @@ def connecttosql(username, password):
         print("Error connecting to MySQL:", e)
     return con
 
-def exec(query):
+def execute(query):
     print(query, end='\n\n')
 
     try:
@@ -58,3 +58,7 @@ def exec(query):
         # con.rollback()
         print(f"{colours.bcolors.FAIL}>>{colours.bcolors.ENDC}", e)
         return -1
+def closeconnection():
+      con.close()
+      print("Connection Closed")
+      exit()
