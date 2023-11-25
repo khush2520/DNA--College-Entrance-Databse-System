@@ -3,9 +3,6 @@ import pymysql
 import pymysql.cursors
 import colours
 from prettytable import PrettyTable 
-import modify
-import analysis
-import retrieve
 import display
 import maskpass
         
@@ -31,6 +28,10 @@ def execute():
     executeQuery(query)
     input("Enter any key to continue: ")
 
+
+import modify
+import analysis
+import retrieve
 
 def dispatch(ch):
     if ch == '1':
@@ -66,7 +67,7 @@ while(1):
                             #   port = 30306,
                               user = username,
                               password = password,
-                              db = 'los_pollos_hermanos',
+                              db = 'CollegeAdmissions',
                               cursorclass = pymysql.cursors.DictCursor)
 
         # tmp = sp.call('clear', shell = True)

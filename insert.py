@@ -1,4 +1,4 @@
-import MiniWorld
+import MiniWorld 
 import subprocess as sp
 import colours
 
@@ -15,7 +15,7 @@ def a():
     if MiniWorld.executeQuery(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
         print("")
-    return
+    return query
 
 
 def b():

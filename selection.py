@@ -2,13 +2,13 @@ import MiniWorld
 import subprocess as sp
 import colours
 
-def a():
-    query = 'SELECT * FROM Drug WHERE Purity > 90;'
+def colleges():
+    query = 'SELECT CollegeName FROM Colleges WHERE MedianPlacement > 10;'
     MiniWorld.executeQuery(query)
 
 
-def b():
-    query = 'SELECT * FROM Employee WHERE Employee_Type = "Accountant";'
+def ranking():
+    query = 'SELECT R.RankingOrganization FROM CollegeListedInRanking R, Colleges C Where C.CollegeID = R.CollegeID and C.CollegeName = "IIT Madras;"'
     MiniWorld.executeQuery(query)
 
 
@@ -17,8 +17,8 @@ def selection():
         tmp = sp.call('clear', shell=True)
         print("Choose an operation:")
         print(f"{colours.bcolors.OKCYAN}")
-        print("1. Drugs with purity > 90%")
-        print("2. Accountant Details")
+        print("1. Colleges with median placement > 10 LPA")
+        print("2. College Rankings where IIT Madras is in top colleges")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
         print("3. Back")
         print("4. Exit")
@@ -27,10 +27,10 @@ def selection():
         ch = input("Enter choice: ").lower()
         tmp = sp.call('clear', shell=True)
 
-        if ch == '1' or ch == 'drugs with purity > 90%':
-            a()
-        elif ch == '2' or ch == 'accountant details':
-            b()
+        if ch == '1':
+            colleges()
+        elif ch == '2':
+            ranking()
         elif ch == '3' or ch == 'back':
             return
         elif ch == '4' or ch == 'exit':

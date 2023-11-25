@@ -30,9 +30,9 @@ def retrieve():
             aggregate()
         elif ch == '4' or ch == 'search':
             search()
-        elif ch == '6' or ch == 'back':
+        elif ch == '5' or ch == 'back':
             return
-        elif ch == '7' or ch == 'exit':
+        elif ch == '6' or ch == 'exit':
             exit()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")

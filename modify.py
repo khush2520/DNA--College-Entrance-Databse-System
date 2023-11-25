@@ -20,17 +20,18 @@ def modify():
         ch = input("Enter choice: ").lower()
         tmp = sp.call('clear', shell = True)
 
-        if ch == '1' or ch == 'insert':
+        if ch == '1':
             insert()
-        elif ch == '2' or ch == 'delete':
+        elif ch == '2':
             delete()
-        elif ch == '3' or ch == 'update':
+        elif ch == '3':
             update()
-        elif ch == '4' or ch == 'back':
+        elif ch == '4':
             return
-        elif ch == '5' or ch == 'exit':
+        elif ch == '5':
             exit()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
         input("Enter any key to continue: ")
+    return
