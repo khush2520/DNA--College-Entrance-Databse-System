@@ -5,27 +5,12 @@ import colours
 from prettytable import PrettyTable 
 import display
 import maskpass
-        
+from conandexec import execute
 
-def executeQuery(query):
-    print(query, end='\n\n')
 
-    try:
-        cur.execute(query)
-        con.commit()
-        cd = cur.description
-        output = cur.fetchall()
-        display.display(output,cd)
-        return 1
-
-    except Exception as e:
-        con.rollback()
-        print(f"{colours.bcolors.FAIL}>>{colours.bcolors.ENDC}", e)
-        return -1
-
-def execute():
+def executeanyquery():
     query = input("Input any query to execute: ")
-    executeQuery(query)
+    execute(query)
     input("Enter any key to continue: ")
 
 
@@ -41,14 +26,14 @@ def dispatch(ch):
     elif ch == '3':
         analysis.analysis()
     elif ch == '4':
-        execute()
+        executeanyquery()
     elif ch == '5':
         exit()
     else:
         print("Invalid Option")
 
 
-
+from conandexec import connecttosql
 # Global
 while(1):
     # tmp = sp.call('clear', shell=True)
@@ -63,22 +48,7 @@ while(1):
     try:
         # Set db name accordingly which have been create by you
         # Set host to the server's address if you don't want to use local SQL server
-        con = pymysql.connect(host = 'localhost',
-                            #   port = 30306,
-                              user = username,
-                              password = password,
-                              db = 'CollegeAdmissions',
-                              cursorclass = pymysql.cursors.DictCursor)
-
-        # tmp = sp.call('clear', shell = True)
-
-        if(con.open):
-            print("Connected")
-        else:
-            print("Failed to connect")
-
-        # tmp = input("Enter any key to CONTINUE>")
-
+        con = connecttosql(username,password)
         with con.cursor() as cur:
             while(1):
                 # tmp = sp.call('clear', shell = True)

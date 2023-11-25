@@ -1,15 +1,14 @@
-import MiniWorld
 import subprocess as sp
 import colours
-
+from conandexec import execute
 def colleges():
     query = 'SELECT CollegeName FROM Colleges WHERE MedianPlacement > 10;'
-    MiniWorld.executeQuery(query)
+    execute(query)
 
 
 def ranking():
     query = 'SELECT R.RankingOrganization FROM CollegeListedInRanking R, Colleges C Where C.CollegeID = R.CollegeID and C.CollegeName = "IIT Madras;"'
-    MiniWorld.executeQuery(query)
+    execute(query)
 
 
 def selection():
