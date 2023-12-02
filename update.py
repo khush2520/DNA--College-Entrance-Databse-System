@@ -24,14 +24,16 @@ def exam_dates():
 
 def exam_reg():
     ExamName = input("Enter Exam Name: ")
-    RegistrationDetails = input("Enter Updated Exam Registration: ")
+    RegistrationDetails = input("Enter Updated Exam Registration Details: ")
+    RegistrationDeadline = input("Enter Updated Exam Deadline: ")
     query = f"Select * From EntranceExams where ExamName = '{ExamName}'"
     o = outputs(query)
 
     if len(o) == 0:
         print("Exam doesnt exist in database")
         return
-    query = f"UPDATE EntranceExams SET RegistrationDetails  = '{RegistrationDetails}' where ExamName = '{ExamName}';"
+    query = f"UPDATE EntranceExams SET RegistrationDetails  = '{RegistrationDetails}',RegistrationDeadline  = '{RegistrationDeadline}' where ExamName = '{ExamName}';"
+    
 
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Updated Database{colours.bcolors.ENDC}")
