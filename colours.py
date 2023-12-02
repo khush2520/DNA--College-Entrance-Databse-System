@@ -1,12 +1,13 @@
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    MAGENTA = '\033[35m'
-    RED = '\033[31m'
+    HEADER = '\033[38;5;213m'     # Light Purple or Pink
+    OKBLUE = '\033[38;5;33m'      # Medium Blue
+    OKCYAN = '\033[38;5;191m'      # Light Pink (Changed from OKCYAN)
+    OKGREEN = '\033[38;5;71m'     # Dark Lime Green
+    WARNING = '\033[38;5;310m'  # Orange (Changed from WARNING)
+    FAIL = '\033[38;5;196m'        # Dark Red
+    ENDC = '\033[0m'         # Reset color to default
+    BOLD = '\033[1m'         # Bold
+    UNDERLINE = '\033[4m'     # Underline
+    MAGENTA = '\033[38;5;165m'     # Dark Magenta or Purple
+    RED = '\033[38;5;160m'         # Red    
+    PINK = '\033[38;5;206m'

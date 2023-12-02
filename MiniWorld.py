@@ -52,16 +52,15 @@ while(1):
         with con.cursor() as cur:
             while(1):
                 # tmp = sp.call('clear', shell = True)
-                print("What would you like to do today?")
+                print("What operation do you want to perform?")
                 print(f"{colours.bcolors.OKCYAN}")
                 print("1. Modify")
                 print("2. Retrieve")
                 print("3. Analysis")
                 print("4. Execute")
-                print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
-                print("5. Exit")
+                print(f"{colours.bcolors.ENDC}{colours.bcolors.PINK}5. Exit\n")
+                ch = input(f"\033[38;5;215mEnter choice: ").lower()
                 print(f"{colours.bcolors.ENDC}")
-                ch = input("Enter choice: ").lower()
                 # tmp = sp.call('clear', shell = True)
                 dispatch(ch)
 
