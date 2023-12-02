@@ -27,6 +27,17 @@ def max_cutoff():
                                                 );
     """
     execute(query)
+    
+def sum_seats():
+    branch = input("Enter Branch name: ")
+    query = f"""
+    SELECT sum(D.Seats) as Seats, C.CollegeName
+    FROM Disciplines D
+    join Colleges C on C.CollegeID = D.CollegeID
+    where BranchName = '{branch}'
+    Group BY C.CollegeID;
+    """
+    execute(query)
 
 
 def aggregate():
@@ -36,9 +47,10 @@ def aggregate():
         print(f"{colours.bcolors.OKCYAN}")
         print("1. Average placements (median) across all colleges in a given city")
         print("2. Branch (in any college) that has the maximum cutoff score across all colleges for a particular exam.")
+        print("3. Total number of seats available for a given branch (eg. ECE) across all colleges.")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
-        print("3. Back")
-        print("4. Exit")
+        print("4. Back")
+        print("5. Exit")
         print(f"{colours.bcolors.ENDC}")
 
         ch = input("Enter choice: ").lower()
@@ -48,9 +60,11 @@ def aggregate():
             avg_placement()
         elif ch == '2':
             max_cutoff()
-        elif ch == '3' or ch == 'back':
+        elif ch == '3':
+            sum_seats()
+        elif ch == '5' or ch == 'back':
             return
-        elif ch == '4' or ch == 'exit':
+        elif ch == '6' or ch == 'exit':
             closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
