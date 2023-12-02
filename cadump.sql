@@ -44,6 +44,12 @@ CREATE TABLE `Alumni` (
 
 LOCK TABLES `Alumni` WRITE;
 /*!40000 ALTER TABLE `Alumni` DISABLE KEYS */;
+INSERT INTO `Alumni` VALUES
+  (1, 'John Doe', 'TechCorp', 'Software Engineer', 2010, 1, 1),
+  (2, 'Jane Smith', 'PowerTech', 'Electrical Engineer', 2012, 3, 2),
+  (3, 'Bob Johnson', 'MechDesign', 'Mechanical Engineer', 2015, 1, 3),
+  (4, 'Alice Williams', 'ConBuild', 'Civil Engineer', 2013, 1, 4),
+  (5, 'Charlie Brown', 'MarketStrat', 'Marketing Manager', 2014, 2, 5);
 /*!40000 ALTER TABLE `Alumni` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,8 +79,15 @@ CREATE TABLE `AlumniGraduatedFromCollegeInProgram` (
 
 LOCK TABLES `AlumniGraduatedFromCollegeInProgram` WRITE;
 /*!40000 ALTER TABLE `AlumniGraduatedFromCollegeInProgram` DISABLE KEYS */;
+INSERT INTO `AlumniGraduatedFromCollegeInProgram` VALUES
+  (1, 1, 1),
+  (3, 2, 2),
+  (1, 3, 3),
+  (1, 4, 4),
+  (2, 5, 5);
 /*!40000 ALTER TABLE `AlumniGraduatedFromCollegeInProgram` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `Alumni_contact_details`
@@ -97,6 +110,14 @@ CREATE TABLE `Alumni_contact_details` (
 
 LOCK TABLES `Alumni_contact_details` WRITE;
 /*!40000 ALTER TABLE `Alumni_contact_details` DISABLE KEYS */;
+INSERT INTO `Alumni_contact_details` (`AlumniID`, `ContactDetails`) VALUES
+  (1, 'john.doe@example.com'),
+  (1, 'john.doe@gmail.com'),
+  (2, 'jane.smith@example.com'),
+  (3, 'bob.johnson@example.com'),
+  (4, 'alice.williams@example.com'),
+  (4, 'alice.williams@gmail.com'),
+  (5, 'charlie.brown@example.com');
 /*!40000 ALTER TABLE `Alumni_contact_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +261,12 @@ CREATE TABLE `Colleges` (
 
 LOCK TABLES `Colleges` WRITE;
 /*!40000 ALTER TABLE `Colleges` DISABLE KEYS */;
-INSERT INTO `Colleges` VALUES (1,'Indian Institute of Technology Bombay','Maharashtra','Mumbai',15.6,40.2,28.9,95,1200,1958,'IITs','NAAC'),(2,'Delhi Technological University','Delhi','New Delhi',12.8,35.7,24.5,88,1400,1941,'DTU','AICTE'),(3,'Anna University','Tamil Nadu','Chennai',14.5,38.9,26.7,92,1800,1978,'AU','UGC'),(4,'Indian Institute of Management Bangalore','Karnataka','Bangalore',18.2,45.6,32.4,98,900,1973,'IIMs','AACSB'),(5,'Jadavpur University','West Bengal','Kolkata',11.9,32.4,21.8,85,1000,1955,'JU','NAAC');
+INSERT INTO `Colleges` VALUES 
+(1,'Indian Institute of Technology Bombay','Maharashtra','Mumbai',15.6,40.2,28.9,95,1200,1958,'IITs','NAAC'),
+(2,'Delhi Technological University','Delhi','New Delhi',12.8,35.7,24.5,88,1400,1941,'DTU','AICTE'),
+(3,'Anna University','Tamil Nadu','Chennai',14.5,38.9,26.7,92,1800,1978,'AU','UGC'),
+(4,'Indian Institute of Management Bangalore','Karnataka','Bangalore',18.2,45.6,32.4,98,900,1973,'IIMs','AACSB'),
+(5,'Jadavpur University','West Bengal','Kolkata',11.9,32.4,21.8,85,1000,1955,'JU','NAAC');
 /*!40000 ALTER TABLE `Colleges` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +293,16 @@ CREATE TABLE `Colleges_from_exam` (
 
 LOCK TABLES `Colleges_from_exam` WRITE;
 /*!40000 ALTER TABLE `Colleges_from_exam` DISABLE KEYS */;
+INSERT INTO `Colleges_from_exam` (`CollegeID`, `ExamName`) VALUES 
+(1, 'JEE Advance'),
+(1, 'CAT'),
+(1, 'GATE'),
+(2, 'JEE Mains'),
+(2, 'CAT'),
+(3, 'GATE'),
+(4, 'CAT'),
+(4, 'GATE'),
+(5, 'JEE Mains');
 /*!40000 ALTER TABLE `Colleges_from_exam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,6 +361,14 @@ CREATE TABLE `Disciplines` (
 
 LOCK TABLES `Disciplines` WRITE;
 /*!40000 ALTER TABLE `Disciplines` DISABLE KEYS */;
+INSERT INTO `Disciplines` (`CollegeID`, `ProgramID`, `BranchName`, `CurriculumSyllabus`, `CourseFee`, `Seats`, `AdmissionRequirements`) VALUES
+(1, 1, 'Computer Science and Engineering', 'CS Curriculum', 120000, 100, 'JEE Advance and Interview'),
+(1, 2, 'Business Administration', 'MBA Curriculum', 200000, 50, 'CAT Score and Interview'),
+(2, 1, 'Information Technology', 'IT Curriculum', 110000, 80, 'JEE Mains and Interview'),
+(3, 3, 'Civil Engineering', 'Civil Engg Curriculum', 130000, 60, 'Entrance Exam and Interview'),
+(4, 2, 'Finance', 'Finance Curriculum', 180000, 40, 'CAT Score and Interview'),
+(5, 1, 'Electrical Engineering', 'EE Curriculum', 125000, 70, 'Entrance Exam and Interview');
+
 /*!40000 ALTER TABLE `Disciplines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,6 +425,14 @@ CREATE TABLE `EntranceExamRequiresEntranceExam` (
 
 LOCK TABLES `EntranceExamRequiresEntranceExam` WRITE;
 /*!40000 ALTER TABLE `EntranceExamRequiresEntranceExam` DISABLE KEYS */;
+-- Insert data into EntranceExamRequiresEntranceExam
+INSERT INTO `EntranceExamRequiresEntranceExam` VALUES
+  ('Entrance Exam A', 'Entrance Exam B', 80),
+  ('Entrance Exam A', 'Entrance Exam C', 75),
+  ('Entrance Exam B', 'Entrance Exam D', 85),
+  ('Entrance Exam C', 'Entrance Exam D', 90),
+  ('Entrance Exam D', 'Entrance Exam E', 88),
+  ('Entrance Exam A', 'Entrance Exam E', 82);
 /*!40000 ALTER TABLE `EntranceExamRequiresEntranceExam` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,6 +460,12 @@ CREATE TABLE `EntranceExams` (
 
 LOCK TABLES `EntranceExams` WRITE;
 /*!40000 ALTER TABLE `EntranceExams` DISABLE KEYS */;
+INSERT INTO `EntranceExams` VALUES
+  ('Entrance Exam A', 'Details for Exam A registration', '2023-06-30', 'Syllabus for Exam A', '2023-07-15', 'Exam A Authorities'),
+  ('Entrance Exam B', 'Details for Exam B registration', '2023-07-15', 'Syllabus for Exam B', '2023-08-01', 'Exam B Authorities'),
+  ('Entrance Exam C', 'Details for Exam C registration', '2023-08-01', 'Syllabus for Exam C', '2023-08-15', 'Exam C Authorities'),
+  ('Entrance Exam D', 'Details for Exam D registration', '2023-08-15', 'Syllabus for Exam D', '2023-08-30', 'Exam D Authorities'),
+  ('Entrance Exam E', 'Details for Exam E registration', '2023-09-01', 'Syllabus for Exam E', '2023-09-15', 'Exam E Authorities');
 /*!40000 ALTER TABLE `EntranceExams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,6 +490,14 @@ CREATE TABLE `Exam_prep_resources` (
 
 LOCK TABLES `Exam_prep_resources` WRITE;
 /*!40000 ALTER TABLE `Exam_prep_resources` DISABLE KEYS */;
+-- Insert data into Exam_prep_resources
+INSERT INTO `Exam_prep_resources` VALUES
+  ('Entrance Exam A', 'Preparation resources for Exam A'),
+  ('Entrance Exam B', 'Preparation resources for Exam B'),
+  ('Entrance Exam C', 'Preparation resources for Exam C'),
+  ('Entrance Exam D', 'Preparation resources for Exam D'),
+  ('Entrance Exam E', 'Preparation resources for Exam E');
+
 /*!40000 ALTER TABLE `Exam_prep_resources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,6 +524,13 @@ CREATE TABLE `NewsUpdates` (
 
 LOCK TABLES `NewsUpdates` WRITE;
 /*!40000 ALTER TABLE `NewsUpdates` DISABLE KEYS */;
+INSERT INTO `NewsUpdates` VALUES
+  ('Exciting News 1', '2023-01-01', 'This is the content of the first news update.', 'General', NULL),
+  ('Latest Announcement', '2023-02-15', 'Read about our latest achievements and announcements.', 'Announcement', NULL),
+  ('Tech Innovation', '2023-03-10', 'Discover the latest technological innovations shaping our future.', 'Technology', NULL),
+  ('Sports Highlights', '2023-04-05', 'Recap of the recent sports events and achievements.', 'Sports', NULL),
+  ('Community Spotlight', '2023-05-20', 'Highlighting the outstanding contributions of our community members.', 'Community', NULL);
+
 /*!40000 ALTER TABLE `NewsUpdates` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -484,6 +557,16 @@ CREATE TABLE `NewsUpdatesRelatedToCollege` (
 
 LOCK TABLES `NewsUpdatesRelatedToCollege` WRITE;
 /*!40000 ALTER TABLE `NewsUpdatesRelatedToCollege` DISABLE KEYS */;
+
+-- Insert data into NewsUpdatesRelatedToCollege
+INSERT INTO `NewsUpdatesRelatedToCollege` VALUES
+  ('Exciting News 1', 1),
+  ('Latest Announcement', 2),
+  ('Tech Innovation', 3),
+  ('Sports Highlights', 4),
+  ('Community Spotlight', 5),
+  ('New Product Launch', 1);
+
 /*!40000 ALTER TABLE `NewsUpdatesRelatedToCollege` ENABLE KEYS */;
 UNLOCK TABLES;
 
