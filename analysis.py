@@ -124,11 +124,11 @@ def analysis():
         ch = input("Enter choice: ").lower()
         tmp = sp.call('clear', shell=True)
 
-        if ch == '1' or ch == 'Find a list of branches you are eligible for based on a score in an exam':
+        if ch == '1':
             a()
-        elif ch == '2' or ch == 'Percentage of placements in the college with the highest NIRF ranking':
+        elif ch == '2':
             b()
-        elif ch == '3' or ch == 'Industries in which startups founded in Mumbai Colleges are working':
+        elif ch == '3':
             c()
         elif ch == '4' or ch == 'back':
             return
