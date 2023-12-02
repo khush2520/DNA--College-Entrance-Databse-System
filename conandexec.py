@@ -57,7 +57,7 @@ def execute(query):
 
     except Exception as e:
         # con.rollback()
-        print(f"{colours.bcolors.FAIL}>>{colours.bcolors.ENDC}", e)
+        print(f"{colours.bcolors.FAIL}ERROR: {colours.bcolors.ENDC}", e)
         return -1
 def closeconnection():
       con.close()
