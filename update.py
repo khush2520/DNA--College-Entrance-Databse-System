@@ -1,26 +1,28 @@
 
 import colours
 import subprocess as sp
+from conandexec import execute
+from conandexec import closeconnection
 
-def a():
-    cid = input("Enter Customer ID: ")
-    amount = float(input("Enter Updated Amount: "))
+def exam_dates():
+    ExamName = input("Enter Exam Name: ")
+    ExamDate = input("Enter Updated Exam Date: ")
 
-    query = f"UPDATE Customer SET Amount_Received = {amount} where Customer_ID = '{cid}'"
+    query = f"UPDATE EntranceExams SET ExamDate = '{ExamDate}' where ExamName = '{ExamName}';"
 
-    if MiniWorld.executeQuery(query) == 1:
+    if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Updated Database{colours.bcolors.ENDC}")
         print("")
     return
 
 
-def b():
-    pid = input("Enter Producer ID: ")
-    amount = float(input("Enter Updated Amount: "))
+def exam_reg():
+    ExamName = input("Enter Exam Name: ")
+    RegistrationDetails = input("Enter Updated Exam Registration: ")
 
-    query = f"UPDATE Producer SET Total_Amount_Paid = {amount} where Producer_ID = '{pid}'"
+    query = f"UPDATE EntranceExams SET RegistrationDetails  = '{RegistrationDetails}' where ExamName = '{ExamName}';"
 
-    if MiniWorld.executeQuery(query) == 1:
+    if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Updated Database{colours.bcolors.ENDC}")
         print("")
     return
@@ -32,7 +34,7 @@ def c():
 
     query = f"UPDATE Organisation SET Market_Value = {value} where Organisation_Name = '{name}'"
 
-    if MiniWorld.executeQuery(query) == 1:
+    if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Updated Database{colours.bcolors.ENDC}")
         print("")
     return
@@ -43,9 +45,9 @@ def update():
         tmp = sp.call('clear', shell=True)
         print("Choose an operation:")
         print(f"{colours.bcolors.OKCYAN}")
-        print("1. Customer Amount")
-        print("2. Producer Amount")
-        print("3. Organisation market value")
+        print("1. Update the exam dates for entrance exams every year.")
+        print("2. Update exam registration details and deadlines every year")
+        print("3. Update the data related to placements of graduates from various programs, branches and colleges annually.")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
         print("4. Back")
         print("5. Exit")
@@ -54,12 +56,12 @@ def update():
         ch = input("Enter choice: ").lower()
         tmp = sp.call('clear', shell=True)
 
-        if ch == '1' or ch == 'customer amount':
-            a()
-        elif ch == '2' or ch == 'producer amount':
-            b()
-        elif ch == '3' or ch == 'organisation market value':
-            c()
+        if ch == '1':
+            exam_dates()
+        elif ch == '2':
+            exam_reg()
+        elif ch == '3':
+            print("Lol sike i did only two updates")
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':
