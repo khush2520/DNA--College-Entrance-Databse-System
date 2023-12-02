@@ -12,6 +12,15 @@ from datetime import datetime
 #   CONSTRAINT `Exam_prep_resources_ibfk_1` FOREIGN KEY (`ExamName`) REFERENCES `EntranceExams` (`ExamName`)
 # )
 
+def get_url():
+    prep_resources = []
+    while True:
+        resource = input("Enter url (or enter 'done' to finish): ")
+        if resource.lower() == 'done':
+            break
+        prep_resources.append(resource)
+    return prep_resources
+
 def get_preparation_resources():
     prep_resources = []
     while True:
@@ -44,11 +53,10 @@ def new_exam():
     query = f"INSERT INTO EntranceExams VALUES ('{examname}','{regdetails}','{regdeadline}','{syllabus}','{examdate}','{examauth}');"
     query = query.replace("'None'", "NULL")
     if execute(query) == 1:
-        print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
-        ask = input("Do you want to enter preparation resources? (y/n): ")
+        ask = input("Do you want to enter URLs of related articles? (y/n): ")
         if(ask == 'y'):
             flag=1
-            prep_resources = get_preparation_resources()
+            prep_resources = get_url()
 
             for resource in prep_resources:
                 insert_query = f'''
@@ -90,7 +98,7 @@ def new_updates():
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
     
-        print("Is the news related to:\n1. College\n2. Exam\n3. None\n?\n")
+        print("Is the news related to:\n1. College\n2. Exam\n3. None  ?\n")
         ch=input("Enter choice (1/2/3): ")
         
         if(ch=='1'):
@@ -109,6 +117,22 @@ def new_updates():
                     INSERT INTO NewsUpdatesRelatedToCollege VALUES ('{title}','{exam}');
                     '''
             execute(query)
+        
+        
+        print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
+        ask = input("Do you want to enter preparation resources? (y/n): ")
+        if(ask == 'y'):
+            flag=1
+            url_resources = get_preparation_resources()
+
+            for resource in url_resources:
+                insert_query = f'''
+                INSERT INTO Urls_of_articles VALUES ('{title}', '{resource}');
+                '''
+                if execute(insert_query) != 1:
+                    flag=0   
+            if(flag==1):
+                print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
         
 
         

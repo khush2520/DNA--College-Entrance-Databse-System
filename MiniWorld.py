@@ -39,11 +39,11 @@ while(1):
     # tmp = sp.call('clear', shell=True)
 
     # Can be skipped if you want to hardcode username and password
-    # print()
-    username = "root"
-    password = "Camus@2716"
-    # print("[Press left ctrl key to show/hide password]")
-    # password = maskpass.advpass()
+    username = input("Enter Username: ")
+    # username = "root"
+    # password = "Camus@2716"
+    print("[Press left ctrl key to show/hide password]")
+    password = maskpass.advpass()
     # password = input("Enter Password: ")
     # password = maskpass.askpass(prompt="Password:::", mask="*")
 
