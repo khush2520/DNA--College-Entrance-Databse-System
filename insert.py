@@ -1,16 +1,8 @@
-
 import subprocess as sp
 import colours
 from conandexec import execute
 from conandexec import closeconnection
 from datetime import datetime
-
-# CREATE TABLE `Exam_prep_resources` (
-#   `ExamName` varchar(255) DEFAULT NULL,
-#   `ExamPreparationResources` varchar(255) DEFAULT NULL,
-#   KEY `ExamName` (`ExamName`),
-#   CONSTRAINT `Exam_prep_resources_ibfk_1` FOREIGN KEY (`ExamName`) REFERENCES `EntranceExams` (`ExamName`)
-# )
 
 def get_url():
     prep_resources = []
@@ -67,15 +59,6 @@ def new_exam():
             if(flag==1):
                 print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
     return query
-
-# REATE TABLE `NewsUpdates` (
-  
-#   `DatePublished` date DEFAULT NULL,
-#   `Content` varchar(1000) DEFAULT NULL,
-#   `Category` varchar(50) DEFAULT NULL,
-#   `Image` blob,
-#   PRIMARY KEY (`NewsUpdatesTitle`)
-# )
 
 def new_updates():
 
@@ -134,24 +117,6 @@ def new_updates():
             if(flag==1):
                 print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
         
-
-        
-    
-    # accid = input("Enter Accountant ID: ")
-    # amount = float(input("Enter Amount Laundered: "))
-
-    # query = f'''
-    # INSERT INTO Money_Front VALUES ('{fname}','{oname}','{accid}','{amount}');
-    # INSERT INTO news (collegeid, news_content)
-    # SELECT collegeid, 'Your News Content Here'
-    # FROM colleges
-    # WHERE collegename = 'Your College Name';
-
-    # '''
-
-    # if execute(query) == 1:
-    #     print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
-    #     print("")
     return
 
 
