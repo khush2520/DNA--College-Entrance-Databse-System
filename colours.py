@@ -1,7 +1,7 @@
 class bcolors:
     HEADER = '\033[38;5;213m'     # Light Purple or Pink
     OKBLUE = '\033[38;5;33m'      # Medium Blue
-    OKCYAN = '\033[38;5;191m'      # Light Pink
+    OKCYAN = '\033[38;5;123m'      # Light Pink
     OKGREEN = '\033[38;5;71m'     # Dark Lime Green
     WARNING = '\033[38;5;310m'  # Orange 
     FAIL = '\033[38;5;196m'        # Dark Red

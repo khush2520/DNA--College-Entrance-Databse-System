@@ -78,6 +78,25 @@ def execute(query, values=None):
         # con.rollback()
         print(f"{colours.bcolors.FAIL}>>{colours.bcolors.ENDC}", e)
         return -1
+def outputs(query, values=None):
+    try:
+        # con = connecttosql(username,password)
+        cur = con.cursor()
+            # print(query, end='\n\n')
+        cur.execute(query)
+        con.commit()
+        cd = cur.description
+        output = cur.fetchall()
+        # if output:
+        #     display.display(output,cd)
+        # print(output)
+        return output
+
+
+    except Exception as e:
+        # con.rollback()
+        print(f"{colours.bcolors.FAIL}>>{colours.bcolors.ENDC}", e)
+        return -1
 def closeconnection():
       con.close()
       print("Connection Closed")

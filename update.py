@@ -3,11 +3,17 @@ import colours
 import subprocess as sp
 from conandexec import execute
 from conandexec import closeconnection
+from conandexec import outputs
     
 def exam_dates():
     ExamName = input("Enter Exam Name: ")
     ExamDate = input("Enter Updated Exam Date: ")
+    query = f"Select * From EntranceExams where ExamName = '{ExamName}'"
+    o = outputs(query)
 
+    if len(o) == 0:
+        print("Exam doesnt exist in database")
+        return
     query = f"UPDATE EntranceExams SET ExamDate = '{ExamDate}' where ExamName = '{ExamName}';"
 
     if execute(query) == 1:
@@ -19,7 +25,12 @@ def exam_dates():
 def exam_reg():
     ExamName = input("Enter Exam Name: ")
     RegistrationDetails = input("Enter Updated Exam Registration: ")
+    query = f"Select * From EntranceExams where ExamName = '{ExamName}'"
+    o = outputs(query)
 
+    if len(o) == 0:
+        print("Exam doesnt exist in database")
+        return
     query = f"UPDATE EntranceExams SET RegistrationDetails  = '{RegistrationDetails}' where ExamName = '{ExamName}';"
 
     if execute(query) == 1:
@@ -33,7 +44,12 @@ def placement_update():
     high = input("Enter Highest Placement: ")
     average = input("Enter Average Placement: ")
     percentage = input("Enter Percentage of Placements eg. 85.5 for 85.5%: ")
-    
+    query = f"Select * From Colleges where CollegeName = '{college}'"
+    o = outputs(query)
+
+    if len(o) == 0:
+        print("College doesnt exist in database")
+        return
     query = f"UPDATE Colleges SET MedianPlacement = {median}, HighestPlacement = {high}, AveragePlacement = {average}, PercentageOfPlacements = {percentage} WHERE CollegeName = '{college}';"
 
     if execute(query) == 1:

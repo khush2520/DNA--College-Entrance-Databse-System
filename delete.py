@@ -3,6 +3,7 @@ import subprocess as sp
 import colours
 from conandexec import execute
 from conandexec import closeconnection
+from conandexec import outputs
 
 def delete_news():
     query = f'''
@@ -15,6 +16,13 @@ def delete_news():
 
 def del_startup():
     name = input("Enter Startup Name you want to delete: ")
+    query = f"Select * From Startups where Description = '{name}'"
+
+    o = outputs(query)
+
+    if len(o) == 0:
+        print("Startup doesnt exist in database")
+        return
     query = f"DELETE FROM Startups where Description = '{name}';"
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Deleted From Database{colours.bcolors.ENDC}", end='\n\n')
