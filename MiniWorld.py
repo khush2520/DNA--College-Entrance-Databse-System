@@ -40,9 +40,10 @@ while(1):
 
     # Can be skipped if you want to hardcode username and password
     # print()
-    username = input("Enter Username: ")
-    print("[Press left ctrl key to show/hide password]")
-    password = maskpass.advpass()
+    username = "root"
+    password = "Camus@2716"
+    # print("[Press left ctrl key to show/hide password]")
+    # password = maskpass.advpass()
     # password = input("Enter Password: ")
     # password = maskpass.askpass(prompt="Password:::", mask="*")
 

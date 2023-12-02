@@ -1,4 +1,4 @@
-import MiniWorld
+
 import subprocess as sp
 import colours
 

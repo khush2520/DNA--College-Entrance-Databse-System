@@ -28,6 +28,8 @@ from conandexec import closeconnection
 #     """
 #     MiniWorld.executeQuery(query)
 
+
+
 def a():
     studentExam= input("Enter Exam: ")
     studentMarks= input("Enter Marks: ")

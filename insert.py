@@ -1,26 +1,66 @@
-import MiniWorld 
+
 import subprocess as sp
 import colours
 from conandexec import execute
 from conandexec import closeconnection
 
-def a():
+# CREATE TABLE `Exam_prep_resources` (
+#   `ExamName` varchar(255) DEFAULT NULL,
+#   `ExamPreparationResources` varchar(255) DEFAULT NULL,
+#   KEY `ExamName` (`ExamName`),
+#   CONSTRAINT `Exam_prep_resources_ibfk_1` FOREIGN KEY (`ExamName`) REFERENCES `EntranceExams` (`ExamName`)
+# )
+
+def get_preparation_resources():
+    prep_resources = []
+    while True:
+        resource = input("Enter preparation resource (or enter 'done' to finish): ")
+        if resource.lower() == 'done':
+            break
+        prep_resources.append(resource)
+    return prep_resources
+
+def new_exam():
 
     # Takes region details as input
-    id = input("Enter Region ID: ")
-    rname = input("Enter Region Name: ")
-    oname = input("Enter Organisation Name: ")
-    mgrid = input("Enter Region Manager ID: ")
+    examname = input("Enter Exam name: ")
+    examauth = input("Enter exam authorities: ")
+    syllabus = input("Enter Syllabus: ")
+    
+    regdeadline = input("Enter registration deadline (YYYY-MM-DD/NA): ")
+    if(regdeadline == "NA"):
+        regdeadline=None
 
-    query = f"INSERT INTO Region VALUES ('{id}','{rname}','{oname}','{mgrid}');"
+    examdate = input("Enter exam date (YYYY-MM-DD/NA): ")
+    if(examdate == "NA"):
+        examdate=None
 
-    if MiniWorld.executeQuery(query) == 1:
+    regdetails = "Not announced yet"
+    ask = input("Do you want to enter regustration details? (y/n): ")
+    if(ask == 'y'):
+        regdetails = input("Enter registration details: ")
+
+    query = f"INSERT INTO EntranceExams VALUES ('{examname}','{regdetails}','{regdeadline}','{syllabus}','{examdate}','{examauth}');"
+
+    if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
-        print("")
+        ask = input("Do you want to enter preparation resources? (y/n): ")
+        if(ask == 'y'):
+            flag=1
+            prep_resources = get_preparation_resources()
+
+            for resource in prep_resources:
+                insert_query = f'''
+                INSERT INTO Exam_prep_resources VALUES ('{examname}', '{resource}');
+                '''
+                if execute(insert_query) != 1:
+                    flag=0   
+            if(flag==1):
+                print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
     return query
 
 
-def b():
+def new_updates():
 
     # Takes Money Front details as input
     fname = input("Enter Front Name: ")
@@ -30,35 +70,13 @@ def b():
 
     query = f"INSERT INTO Money_Front VALUES ('{fname}','{oname}','{accid}','{amount}');"
 
-    if MiniWorld.executeQuery(query) == 1:
+    if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
         print("")
     return
 
 
-def c():
 
-    # Takes Employee details as input
-    eid = input("Enter Employee ID: ")
-    oname = input("Enter Organisation Name: ")
-    empType = input("Enter Employee Type: ")
-    sDate = input("Enter Start Date(YYYY-MM-DD): ")
-    eDate = input("Enter End Date(YYYY-MM-DD/NA): ")
-    rid = input("Enter Region ID: ")
-    fname = input("Enter First Name: ")
-    lname = input("Enter Last Name: ")
-    dob = input ("Enter Date of Birth(YYYY-MM-DD): ")
-    sal = float(input("Enter Salary: "))
-
-    if eDate.upper() == 'NA':
-        eDate = "9999-12-31"
-
-    query = f"INSERT INTO Employee VALUES ('{eid}','{oname}','{empType}','{sDate}','{eDate}','{rid}', '{fname}','{lname}','{dob}','{sal}');"
-
-    if MiniWorld.executeQuery(query) == 1:
-        print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
-        print("")
-    return
 
 
 def insert():
@@ -66,9 +84,8 @@ def insert():
         tmp = sp.call('clear', shell=True)
         print("Choose an operation:")
         print(f"{colours.bcolors.OKCYAN}")
-        print("1. Region")
-        print("2. Money Front")
-        print("3. Employee")
+        print("1. Adding details of a new entrance exam.")
+        print("2. Entry of recent news/updates regarding exams, colleges, programs.")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
         print("4. Back")
         print("5. Exit")
@@ -78,11 +95,9 @@ def insert():
         tmp = sp.call('clear', shell = True)
 
         if ch == '1' :
-            a()
+            new_exam()
         elif ch == '2' :
-            b()
-        elif ch == '3' :
-            c()
+            new_updates()
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':
