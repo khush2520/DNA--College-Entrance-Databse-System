@@ -201,7 +201,7 @@ DROP TABLE IF EXISTS `College_Contacts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `College_Contacts` (
   `CollegeID` int DEFAULT NULL,
-  `ContactDetails` varchar DEFAULT NULL,
+  `ContactDetails` varchar(255) DEFAULT NULL,
   KEY `CollegeID` (`CollegeID`),
   CONSTRAINT `College_Contacts_ibfk_1` FOREIGN KEY (`CollegeID`) REFERENCES `Colleges` (`CollegeID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
