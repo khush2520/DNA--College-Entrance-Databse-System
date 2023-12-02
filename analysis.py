@@ -26,6 +26,38 @@ GROUP BY F.Region_ID;
     """
     MiniWorld.executeQuery(query)
 
+def a1():
+    studentExam= input("Enter Exam")
+    studentMarks= input("Enter Marks")
+    query = f"""
+    SELECT Program.ProgramName, College.CollegeName
+    FROM CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams
+    JOIN Program ON CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.ProgramID = Program.ProgramID
+    JOIN College ON CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.CollegeID = College.CollegeID
+    WHERE CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.ExamName = {studentExam}
+    AND {studentMarks} > CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.CutoffScore;
+    """
+    MiniWorld.executeQuery(query)
+
+def b1():
+    query=""" 
+    SELECT PercentageOfPlacements
+    FROM Colleges
+    WHERE CollegeID=(
+    SELECT CollegeID 
+    FROM CollegeListedInRanking 
+    WHERE RankingOrganization='NIRF' AND Rank=1
+    );
+    """
+    MiniWorld.executeQuery(query)
+
+def c1():
+    query="""
+    SELECT IndustryField
+    FROM Startups JOIN Colleges ON Startups.CollegeID = Colleges.CollegeID
+    WHERE Colleges.City = 'Mumbai';
+    """
+    MiniWorld.executeQuery(query)
 
 def b():
     startDate = input("Enter start date of the week in form yyyy-mm-dd: ")
