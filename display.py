@@ -16,6 +16,10 @@ def display(output,cd):
     # Create a PrettyTable instance and set the column names
     table = PrettyTable(columns)
 
+    if (len(output) == 0):
+        print(PURPLE + "No results found!" + RESET)
+        return
+
     # Add rows to the table
     for row in output:
         table.add_row(row.values())

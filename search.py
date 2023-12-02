@@ -1,37 +1,31 @@
 import MiniWorld
 import colours
 import subprocess as sp
+from conandexec import execute
+from conandexec import closeconnection
 
-def a():
-    numbers = input("Enter numbers to search for:")
+def college_name():
+    start_name = input("Enter starting substring:")
     query = f"""
-    SELECT Phone_Number, Producer_ID as ID 
-        FROM Producer_Phone_Num 
-        WHERE Phone_Number LIKE "%{numbers}%" 
-    UNION 
-        SELECT Phone_Number, Employee_ID as ID 
-        FROM Emp_Phone_Num 
-        WHERE Phone_Number LIKE "%{numbers}%" 
-    UNION 
-        SELECT Phone_Number, Customer_ID as ID 
-        FROM Cust_Phone_Num 
-        WHERE Phone_Number LIKE "%{numbers}%"
+        SELECT CollegeName, City, MedianPlacement 
+        FROM Colleges 
+        WHERE CollegeName LIKE "{start_name}%" 
     """
-    MiniWorld.executeQuery(query)
+    execute(query)
 
 
-def b():
-    starting_letter = input("Enter starting letter: ")
-    query = f'SELECT Drug_Name FROM Drug WHERE Drug_Name LIKE "{starting_letter}%"'
-    MiniWorld.executeQuery(query)
+def branch_name():
+    substring = input("Enter substring to search for: ")
+    query = f'SELECT BranchName, CurriculumSyllabus FROM Disciplines WHERE BranchName LIKE "%{substring}%"'
+    execute(query)
 
 def search():
     while(1):
         tmp = sp.call('clear', shell=True)
         print("Choose an operation:")
         print(f"{colours.bcolors.OKCYAN}")
-        print("1. Phone Number")
-        print("2. Drug")
+        print("1. Retrieve list of colleges whose names start with some string eg. “Indian”.")
+        print("2. Retrieve list of branches with substring “Computer”.")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
         print("3. Back")
         print("4. Exit")
@@ -40,14 +34,14 @@ def search():
         ch = input("Enter choice: ").lower()
         tmp = sp.call('clear', shell=True)
 
-        if ch == '1' or ch == 'phone number':
-            a()
-        elif ch == '2' or ch == 'drug':
-            b()
+        if ch == '1':
+            college_name()
+        elif ch == '2':
+            branch_name()
         elif ch == '3' or ch == 'back':
             return
         elif ch == '4' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 

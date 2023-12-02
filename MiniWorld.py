@@ -43,6 +43,7 @@ while(1):
     username = input("Enter Username: ")
     print("[Press left ctrl key to show/hide password]")
     password = maskpass.advpass()
+    # password = input("Enter Password: ")
     # password = maskpass.askpass(prompt="Password:::", mask="*")
 
     try:

@@ -1,6 +1,8 @@
 import MiniWorld 
 import subprocess as sp
 import colours
+from conandexec import execute
+from conandexec import closeconnection
 
 def a():
 
@@ -75,16 +77,16 @@ def insert():
         ch = input("Enter choice: ").lower()
         tmp = sp.call('clear', shell = True)
 
-        if ch == '1' or ch == 'region':
+        if ch == '1' :
             a()
-        elif ch == '2' or ch == 'money front':
+        elif ch == '2' :
             b()
-        elif ch == '3' or ch == 'employee':
+        elif ch == '3' :
             c()
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
