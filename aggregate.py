@@ -31,12 +31,11 @@ def max_cutoff():
 def sum_seats():
     branch = input("Enter Branch name: ")
     query = f"""
-    SELECT sum(D.Seats) as Seats, C.CollegeName
+    SELECT sum(D.Seats) as Seats, '{branch}'
     FROM Disciplines D
     join Colleges C on C.CollegeID = D.CollegeID
-    where BranchName = '{branch}'
-    Group BY C.CollegeID;
-    """
+    where BranchName = '{branch}';
+    """ 
     execute(query)
 
 
@@ -62,9 +61,9 @@ def aggregate():
             max_cutoff()
         elif ch == '3':
             sum_seats()
-        elif ch == '5' or ch == 'back':
+        elif ch == '4' or ch == 'back':
             return
-        elif ch == '6' or ch == 'exit':
+        elif ch == '5' or ch == 'exit':
             closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")

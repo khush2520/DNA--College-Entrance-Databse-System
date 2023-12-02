@@ -7,10 +7,10 @@ def project_college():
     city = input("Enter city name eg. Hyderabad: ")
     course = input("Enter a program name eg. Bachelor of Legislative Law: ")
     query = f"""
-    SELECT Colleges.CollegeName, College_Contacts.ContactDetails
+    SELECT Colleges.CollegeName AS college_name, College_Contacts.ContactDetails AS contact_detail
     FROM Colleges
     LEFT JOIN College_Contacts ON Colleges.CollegeID = College_Contacts.CollegeID
-    WHERE Colleges.City = "{city}"
+    WHERE Colleges.City = '{city}'
     AND Colleges.CollegeID IN (
         SELECT Colleges.CollegeID
         FROM Colleges
@@ -18,10 +18,9 @@ def project_college():
         WHERE CollegeOffersPrograms.ProgramID IN (
             SELECT Programs.ProgramID
             FROM Programs
-            WHERE ProgramName = "{course}"
+            WHERE ProgramName = '{course}'
         )
     );
-
     """
     execute(query)
 
@@ -35,7 +34,7 @@ def project_alumni():
     WHERE Alumni.CollegeID IN (
         SELECT CollegeID
         FROM Colleges
-        WHERE CollegeName = "{college}"
+        WHERE CollegeName = '{college}'
     );
 
     """
@@ -49,7 +48,7 @@ def project_exam():
     FROM EntranceExams
     INNER JOIN CollegeAdmitStudents ON EntranceExams.ExamName = CollegeAdmitStudents.ExamName
     INNER JOIN Colleges ON CollegeAdmitStudents.CollegeID = Colleges.CollegeID
-    WHERE Colleges.CollegeName = "{college}";
+    WHERE Colleges.CollegeName = '{college}';
 
     """
     execute(query)
@@ -84,3 +83,4 @@ def projection():
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
         input("Enter any key to continue: ")
+

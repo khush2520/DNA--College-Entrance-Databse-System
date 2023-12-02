@@ -44,13 +44,16 @@ def a():
     execute(query)
 
 def b():
-    query=""" 
+    org= input("Organisation : ")
+    query=f""" 
     SELECT PercentageOfPlacements
     FROM Colleges
-    WHERE CollegeID=(
-    SELECT CollegeID 
-    FROM CollegeListedInRanking 
-    WHERE RankingOrganization='NIRF' AND RankingValue=1
+    WHERE CollegeID = (
+    SELECT CollegeID
+    FROM CollegeListedInRanking
+    WHERE RankingOrganization = "{org}"
+    ORDER BY RankingValue DESC
+    LIMIT 1
     );
     """
     execute(query)

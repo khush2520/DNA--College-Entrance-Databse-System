@@ -45,10 +45,10 @@ def new_exam():
     query = f"INSERT INTO EntranceExams VALUES ('{examname}','{regdetails}','{regdeadline}','{syllabus}','{examdate}','{examauth}');"
     query = query.replace("'None'", "NULL")
     if execute(query) == 1:
-        ask = input("Do you want to enter URLs of related articles? (y/n): ")
+        ask = input("Do you want to enter preparation resources? (y/n): ")
         if(ask == 'y'):
             flag=1
-            prep_resources = get_url()
+            prep_resources = get_preparation_resources()
 
             for resource in prep_resources:
                 insert_query = f'''
@@ -75,8 +75,12 @@ def new_updates():
         file_path = input("Enter the path to the image file: ")
         with open(file_path, mode='rb') as file:
             blob_data = file.read()
+    if blob_data:
+        values = (title,datepub, content, category, bytes(blob_data))
 
-    values = (title,datepub, content, category, bytes(blob_data))
+    else:
+        values = (title,datepub, content, category, None)
+
     query = "INSERT INTO NewsUpdates (NewsUpdatesTitle, DatePublished, Content, Category, Image) VALUES (%s, %s, %s, %s, %s);"
     
     # print(query)
@@ -111,10 +115,10 @@ def new_updates():
         
         
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
-        ask = input("Do you want to enter preparation resources? (y/n): ")
+        ask = input("Do you want to enter URLs of related articles? (y/n): ")
         if(ask == 'y'):
             flag=1
-            url_resources = get_preparation_resources()
+            url_resources = get_url()
 
             for resource in url_resources:
                 insert_query = f'''
@@ -127,7 +131,16 @@ def new_updates():
         
     return
 
-
+def prog_new():
+    college=input("Enter college name: ")
+    prog=input("Enter program name that college is now offering: ")
+    query = f"""
+    INSERT INTO CollegeOffersPrograms (CollegeID, ProgramID)
+    SELECT Colleges.CollegeID, Programs.ProgramID
+    FROM Colleges, Programs
+    WHERE Colleges.CollegeName = '{college}' AND Programs.ProgramName = '{prog}';
+    """
+    execute(query)
 
 
 def insert():
@@ -137,6 +150,7 @@ def insert():
         print(f"{colours.bcolors.OKCYAN}")
         print("1. Adding details of a new entrance exam.")
         print("2. Entry of recent news/updates regarding exams, colleges, programs.")
+        print("3. Entry of programs recently introduced by colleges")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
         print("4. Back")
         print("5. Exit")
@@ -149,6 +163,8 @@ def insert():
             new_exam()
         elif ch == '2' :
             new_updates()
+        elif ch == '3':
+            prog_new()
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':
@@ -157,3 +173,4 @@ def insert():
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
         input("Enter any key to continue: ")
+        

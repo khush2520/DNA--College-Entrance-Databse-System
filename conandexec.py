@@ -81,7 +81,7 @@ def execute(query, values=None):
 def closeconnection():
       con.close()
       print("Connection Closed")
-      command = f"mysqldump -u {u} -p{p} CollegeAdmissions > cadump3.sql"
+      command = f"mysqldump -u {u} -p{p} CollegeAdmissions > cadump.sql"
       sp.run(command, shell=True)
 # mysqldump -u username -p databasename > filename.sql
       exit()

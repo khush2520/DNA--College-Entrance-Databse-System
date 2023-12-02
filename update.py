@@ -27,6 +27,19 @@ def exam_reg():
         print("")
     return
 
+def placement_update():
+    college = input("Enter college name: ")
+    median = input("Enter New Median Placement: ")
+    high = input("Enter Highest Placement: ")
+    average = input("Enter Average Placement: ")
+    percentage = input("Enter Percentage of Placements eg. 85.5 for 85.5%: ")
+    
+    query = f"UPDATE Colleges SET MedianPlacement = {median}, HighestPlacement = {high}, AveragePlacement = {average}, PercentageOfPlacements = {percentage} WHERE CollegeName = '{college}';"
+
+    if execute(query) == 1:
+        print(f"{colours.bcolors.OKGREEN}Updated Database{colours.bcolors.ENDC}")
+        print("")
+    return
 
 
 def update():
@@ -50,7 +63,7 @@ def update():
         elif ch == '2':
             exam_reg()
         elif ch == '3':
-            print("Lol sike i did only two updates")
+            placement_update()
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':

@@ -8,7 +8,7 @@ def colleges():
 
 
 def ranking():
-    query = 'SELECT R.RankingOrganization FROM CollegeListedInRanking R, Colleges C Where C.CollegeID = R.CollegeID and C.CollegeName = "IIT Madras;"'
+    query = 'SELECT R.RankingOrganization FROM CollegeListedInRanking R, Colleges C Where C.CollegeID = R.CollegeID and C.CollegeName = "IIT Madras"'
     execute(query)
 
 
