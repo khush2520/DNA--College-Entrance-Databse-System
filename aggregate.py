@@ -31,7 +31,7 @@ def max_cutoff():
 def sum_seats():
     branch = input("Enter Branch name: ")
     query = f"""
-    SELECT sum(D.Seats) as Seats, '{branch}'
+    SELECT sum(D.Seats) as Seats
     FROM Disciplines D
     join Colleges C on C.CollegeID = D.CollegeID
     where BranchName = '{branch}';

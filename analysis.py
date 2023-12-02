@@ -46,7 +46,7 @@ def a():
 def b():
     org= input("Organisation : ")
     query=f""" 
-    SELECT PercentageOfPlacements
+    SELECT CollegeName, PercentageOfPlacements
     FROM Colleges
     WHERE CollegeID = (
     SELECT CollegeID
@@ -60,7 +60,7 @@ def b():
 
 def c():
     query="""
-    SELECT IndustryField
+    SELECT DISTINCT IndustryField
     FROM Startups JOIN Colleges ON Startups.CollegeID = Colleges.CollegeID
     WHERE Colleges.City = 'Mumbai';
     """
@@ -117,7 +117,7 @@ def analysis():
         print("Choose an operation:")
         print(f"{colours.bcolors.OKCYAN}")
         print("1. Find a list of branches you are eligible for based on a score in an exam")
-        print("2. Percentage of placements in the college with the highest NIRF ranking")
+        print("2. Percentage of placements in the college with the highest ranking by given organisation")
         print("3. Industries in which startups founded in Mumbai Colleges are working")
         print(f"{colours.bcolors.ENDC}{colours.bcolors.WARNING}")
         print("4. Back")
