@@ -120,7 +120,7 @@ CREATE TABLE `CollegeAdmitStudents` (
   KEY `CollegeID` (`CollegeID`),
   KEY `ProgramID` (`ProgramID`),
   KEY `ExamName` (`ExamName`),
-  CONSTRAINT `CollegeAdmitStudents_ibfk_1` FOREIGN KEY (`DisciplineID`) REFERENCES `Disciplines` (`BranchName`) ON DELETE RESTRICT ON UPDATE CASCADE ,
+  CONSTRAINT `CollegeAdmitStudents_ibfk_1` FOREIGN KEY (`DisciplineID`) REFERENCES `Disciplines` (`BranchName`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `CollegeAdmitStudents_ibfk_2` FOREIGN KEY (`CollegeID`) REFERENCES `Colleges` (`CollegeID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `CollegeAdmitStudents_ibfk_3` FOREIGN KEY (`ProgramID`) REFERENCES `Programs` (`ProgramID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `CollegeAdmitStudents_ibfk_4` FOREIGN KEY (`ExamName`) REFERENCES `EntranceExams` (`ExamName`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -161,7 +161,7 @@ CREATE TABLE `CollegeListedInRanking` (
 
 LOCK TABLES `CollegeListedInRanking` WRITE;
 /*!40000 ALTER TABLE `CollegeListedInRanking` DISABLE KEYS */;
-INSERT INTO `CollegeListedInRanking` VALUES (1,'QS World University Rankings',50),(2,'Times Higher Education',30),(3,'QS World University Rankings',80),(4,'Financial Times MBA Ranking',15),(5,'QS World University Rankings',65);
+INSERT INTO `CollegeListedInRanking` VALUES (1,'QS World University Rankings',50),(2,'Times Higher Education',30),(3,'QS World University Rankings',80),(4,'Financial Times MBA Ranking',15),(5,'QS World University Rankings',65),(6,'QS World University Rankings',110);
 /*!40000 ALTER TABLE `CollegeListedInRanking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +213,7 @@ CREATE TABLE `College_Contacts` (
 
 LOCK TABLES `College_Contacts` WRITE;
 /*!40000 ALTER TABLE `College_Contacts` DISABLE KEYS */;
-INSERT INTO `College_Contacts` VALUES (1,123),(1,123),(2,987),(2,987),(3,111),(3,111),(4,555),(5,999),(5,999);
+INSERT INTO `College_Contacts` VALUES (1,'123'),(1,'123'),(2,'987'),(2,'987'),(3,'111'),(3,'111'),(4,'555'),(5,'999'),(5,'999');
 /*!40000 ALTER TABLE `College_Contacts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `Colleges` (
 
 LOCK TABLES `Colleges` WRITE;
 /*!40000 ALTER TABLE `Colleges` DISABLE KEYS */;
-INSERT INTO `Colleges` VALUES (1,'Indian Institute of Technology Bombay','Maharashtra','Mumbai',15.6,40.2,28.9,95,1200,1958,'IITs','NAAC'),(2,'Delhi Technological University','Delhi','New Delhi',12.8,35.7,24.5,88,1400,1941,'DTU','AICTE'),(3,'Anna University','Tamil Nadu','Chennai',14.5,38.9,26.7,92,1800,1978,'AU','UGC'),(4,'Indian Institute of Management Bangalore','Karnataka','Bangalore',18.2,45.6,32.4,98,900,1973,'IIMs','AACSB'),(5,'Jadavpur University','West Bengal','Kolkata',11.9,32.4,21.8,85,1000,1955,'JU','NAAC');
+INSERT INTO `Colleges` VALUES (1,'Indian Institute of Technology Bombay','Maharashtra','Mumbai',15.6,40.2,28.9,95,1200,1958,'IITs','NAAC'),(2,'Delhi Technological University','Delhi','New Delhi',12.8,35.7,24.5,88,1400,1941,'DTU','AICTE'),(3,'Anna University','Tamil Nadu','Chennai',14.5,38.9,26.7,92,1800,1978,'AU','UGC'),(4,'Indian Institute of Management Bangalore','Karnataka','Bangalore',18.2,45.6,32.4,98,900,1973,'IIMs','AACSB'),(5,'Jadavpur University','West Bengal','Kolkata',11.9,32.4,21.8,85,1000,1955,'JU','NAAC'),(6,'IIT Madras','Tamil Nadu','Madras',15.6,40.2,28.9,95,1200,1958,'IITs','NAAC');
 /*!40000 ALTER TABLE `Colleges` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -782,7 +782,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-03  2:58:42
-
-
--- INSERT INTO Colleges VALUES ('6','IIT Madras','Tamil Nadu','Madras',15.6,40.2,28.9,95,1200,1958,'IITs','NAAC')
+-- Dump completed on 2023-12-03  4:25:07
