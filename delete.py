@@ -9,19 +9,13 @@ def delete_news():
     DELETE FROM NewsUpdates
     WHERE DatePublished < CURDATE() - INTERVAL 1 YEAR;
     '''
-
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Deleted From Database{colours.bcolors.ENDC}", end='\n\n')
     return
 
-
-def b():
-    fname = input("Enter Front Name you want to delete: ")
-    oname = input("Enter Organisation Name you want to delete: ")
-    accid = input("Enter Accountant ID you want to delete: ")
-
-    query = f"DELETE FROM Money_Front where Front_Name = '{fname}' AND Organisation_Name = '{oname}' AND Acc_Emp_ID = '{accid}';"
-
+def del_startup():
+    name = input("Enter Startup Name you want to delete: ")
+    query = f"DELETE FROM Startups where Description = '{name}';"
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Deleted From Database{colours.bcolors.ENDC}", end='\n\n')
     return
@@ -45,7 +39,7 @@ def delete():
         if ch == '1':
             delete_news()
         elif ch == '2':
-            b()
+            del_startup()
         elif ch == '3' or ch == 'back':
             return
         elif ch == '4' or ch == 'exit':
@@ -54,4 +48,3 @@ def delete():
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
         input("Enter any key to continue: ")
-
