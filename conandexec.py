@@ -51,7 +51,8 @@ def execute(query):
         con.commit()
         cd = cur.description
         output = cur.fetchall()
-        display.display(output,cd)
+        if output:
+            display.display(output,cd)
         return 1
 
     except Exception as e:

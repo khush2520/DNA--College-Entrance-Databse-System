@@ -39,9 +39,9 @@ def new_exam():
     ask = input("Do you want to enter regustration details? (y/n): ")
     if(ask == 'y'):
         regdetails = input("Enter registration details: ")
-
+    
     query = f"INSERT INTO EntranceExams VALUES ('{examname}','{regdetails}','{regdeadline}','{syllabus}','{examdate}','{examauth}');"
-
+    query = query.replace("'None'", "NULL")
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
         ask = input("Do you want to enter preparation resources? (y/n): ")
