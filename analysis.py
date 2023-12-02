@@ -2,6 +2,8 @@ import MiniWorld
 import colours
 import subprocess as sp
 from datetime import datetime
+from conandexec import execute
+from conandexec import closeconnection
 
 # def a():
 #     todayDate = datetime.today().strftime('%Y-%m-%d')
@@ -27,17 +29,17 @@ from datetime import datetime
 #     MiniWorld.executeQuery(query)
 
 def a():
-    studentExam= input("Enter Exam")
-    studentMarks= input("Enter Marks")
+    studentExam= input("Enter Exam: ")
+    studentMarks= input("Enter Marks: ")
     query = f"""
-    SELECT Program.ProgramName, College.CollegeName
-    FROM CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams
-    JOIN Program ON CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.ProgramID = Program.ProgramID
-    JOIN College ON CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.CollegeID = College.CollegeID
-    WHERE CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.ExamName = {studentExam}
-    AND {studentMarks} > CollegeAdmitStudentsInDisciplineOfProgramBasedOnEntranceExams.CutoffScore;
+    SELECT Programs.ProgramName, Colleges.CollegeName
+    FROM CollegeAdmitStudents
+    JOIN Programs ON CollegeAdmitStudents.ProgramID = Programs.ProgramID
+    JOIN Colleges ON CollegeAdmitStudents.CollegeID = Colleges.CollegeID
+    WHERE CollegeAdmitStudents.ExamName = "{studentExam}"
+    AND {studentMarks} > CollegeAdmitStudents.CutoffScore;
     """
-    MiniWorld.executeQuery(query)
+    execute(query)
 
 def b():
     query=""" 
@@ -46,10 +48,10 @@ def b():
     WHERE CollegeID=(
     SELECT CollegeID 
     FROM CollegeListedInRanking 
-    WHERE RankingOrganization='NIRF' AND Rank=1
+    WHERE RankingOrganization='NIRF' AND RankingValue=1
     );
     """
-    MiniWorld.executeQuery(query)
+    execute(query)
 
 def c():
     query="""
@@ -57,7 +59,7 @@ def c():
     FROM Startups JOIN Colleges ON Startups.CollegeID = Colleges.CollegeID
     WHERE Colleges.City = 'Mumbai';
     """
-    MiniWorld.executeQuery(query)
+    execute(query)
 
 # def b():
 #     startDate = input("Enter start date of the week in form yyyy-mm-dd: ")
@@ -129,7 +131,7 @@ def analysis():
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
