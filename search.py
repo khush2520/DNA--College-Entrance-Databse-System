@@ -1,4 +1,3 @@
-import MiniWorld
 import colours
 import subprocess as sp
 from conandexec import execute
