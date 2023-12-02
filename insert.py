@@ -73,11 +73,12 @@ def new_updates():
     ask = input("Do you want to include an image? (y/n): ")
     if(ask == 'y'):
         file_path = input("Enter the path to the image file: ")
-        with open(file_path, 'rb') as file:
-            blob_data = file.read()
+        # with open(file_path, mode='rb') as file:
+        #     blob_data = file.read()
     
-    query = f"INSERT INTO NewsUpdates VALUES ('{title}','{datepub}','{content}','{category}','{blob_data}');"
-    query = query.replace("'None'", "NULL")
+    query = f"INSERT INTO NewsUpdates VALUES ('{title}','{datepub}','{content}','{category}',LOAD_FILE('{file_path}'));"
+    # query = query.replace("'None'", "NULL")    
+    
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
     
