@@ -3,10 +3,15 @@ import colours
 import display
 import subprocess as sp
 con = ""
+u = ""
+p = ""
 def connecttosql(username, password):
     try:
         # Connect to the MySQL server
         global con
+        global u,p 
+        u = username
+        p = password
         con = pymysql.connect(host='localhost',
                               user=username,
                               password=password,
@@ -76,4 +81,7 @@ def execute(query, values=None):
 def closeconnection():
       con.close()
       print("Connection Closed")
+      command = f"mysqldump -u {u} -p{p} CollegeAdmissions > cadump3.sql"
+      sp.run(command, shell=True)
+# mysqldump -u username -p databasename > filename.sql
       exit()
