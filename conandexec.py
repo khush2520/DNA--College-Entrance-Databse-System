@@ -21,6 +21,9 @@ def connecttosql(username, password):
                 # Create the 'College' database if it doesn't exist
                 cursor.execute("CREATE DATABASE CollegeAdmissions")
                 print("Database 'CollegeAdmissions' created")
+            
+                command = f"mysql -u{username} -p{password} CollegeAdmissions < cadump.sql"
+                sp.run(command, shell=True)
 
         # Connect to the 'College' database
         con = pymysql.connect(host='localhost',
@@ -31,8 +34,6 @@ def connecttosql(username, password):
 
         if con.open:
             print("Connected to database 'CollegeAdmissions'")
-            command = f"mysql -u{username} -p{password} CollegeAdmissions < cadump.sql"
-            sp.run(command, shell=True)
            
         else:
             print("Failed to connect to database 'CollegeAdmissions'")
@@ -43,23 +44,30 @@ def connecttosql(username, password):
 
 
 def execute(query, values=None):
-    print(query, end='\n\n')
 
     try:
         # con = connecttosql(username,password)
         cur = con.cursor()
         if (values == None): 
+            print(query, end='\n\n')
             cur.execute(query)
+            con.commit()
+            cd = cur.description
+            output = cur.fetchall()
+            if output:
+                display.display(output,cd)
+            return 1
         else:
-            print(query, values)
+            # print(query, values)
             cur.execute(query, values)
-        
-        con.commit()
-        cd = cur.description
-        output = cur.fetchall()
-        if output:
-            display.display(output,cd)
-        return 1
+            if values[-1]:
+                display.display_blob_as_image(values[-1])
+            else:
+                display.display
+            con.commit()
+            cd = cur.description
+            output = cur.fetchall()
+            return 1
 
     except Exception as e:
         # con.rollback()
