@@ -3,6 +3,7 @@ import subprocess as sp
 import colours
 from conandexec import execute
 from conandexec import closeconnection
+from datetime import datetime
 
 # CREATE TABLE `Exam_prep_resources` (
 #   `ExamName` varchar(255) DEFAULT NULL,
@@ -59,20 +60,74 @@ def new_exam():
                 print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
     return query
 
+# REATE TABLE `NewsUpdates` (
+  
+#   `DatePublished` date DEFAULT NULL,
+#   `Content` varchar(1000) DEFAULT NULL,
+#   `Category` varchar(50) DEFAULT NULL,
+#   `Image` blob,
+#   PRIMARY KEY (`NewsUpdatesTitle`)
+# )
 
 def new_updates():
 
     # Takes Money Front details as input
-    fname = input("Enter Front Name: ")
-    oname = input("Enter Organisation Name: ")
-    accid = input("Enter Accountant ID: ")
-    amount = float(input("Enter Amount Laundered: "))
-
-    query = f"INSERT INTO Money_Front VALUES ('{fname}','{oname}','{accid}','{amount}');"
-
+    title = input("Enter News/Update Title: ")
+    datepub = datetime.today().date()
+    print(f"Date published: {datepub}")
+    content= input("Enter content: ")
+    category=input("Enter news/update category: ")
+    file_path=''
+    blob_data=None
+    ask = input("Do you want to include an image? (y/n): ")
+    if(ask == 'y'):
+        file_path = input("Enter the path to the image file: ")
+        with open(file_path, 'rb') as file:
+            blob_data = file.read()
+    
+    query = f"INSERT INTO NewsUpdates VALUES ('{title}','{datepub}','{content}','{category}','{blob_data}');"
+    query = query.replace("'None'", "NULL")
     if execute(query) == 1:
         print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
-        print("")
+    
+        print("Is the news related to:\n1. College\n2. Exam\n3. None\n?\n")
+        ch=input("Enter choice (1/2/3): ")
+        
+        if(ch=='1'):
+            college=input("Enter college name: ")
+            query = f'''
+                    INSERT INTO NewsUpdatesRelatedToCollege (NewsUpdatesTitle, CollegeID)
+                    SELECT '{title}',CollegeID
+                    FROM Colleges
+                    WHERE CollegeName = '{college}';
+                    '''
+            execute(query)
+
+        elif(ch=='2'):
+            exam=input("Enter exam name: ")
+            query = f'''
+                    INSERT INTO NewsUpdatesRelatedToCollege VALUES ('{title}','{exam}');
+                    '''
+            execute(query)
+        
+
+        
+    
+    # accid = input("Enter Accountant ID: ")
+    # amount = float(input("Enter Amount Laundered: "))
+
+    # query = f'''
+    # INSERT INTO Money_Front VALUES ('{fname}','{oname}','{accid}','{amount}');
+    # INSERT INTO news (collegeid, news_content)
+    # SELECT collegeid, 'Your News Content Here'
+    # FROM colleges
+    # WHERE collegename = 'Your College Name';
+
+    # '''
+
+    # if execute(query) == 1:
+    #     print(f"{colours.bcolors.OKGREEN}Inserted Into Database{colours.bcolors.ENDC}")
+    #     print("")
     return
 
 
