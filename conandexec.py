@@ -41,13 +41,19 @@ def connecttosql(username, password):
         print("Error connecting to MySQL:", e)
     return con
 
-def execute(query):
+
+def execute(query, values=None):
     print(query, end='\n\n')
 
     try:
         # con = connecttosql(username,password)
         cur = con.cursor()
-        cur.execute(query)
+        if (values == None): 
+            cur.execute(query)
+        else:
+            print(query, values)
+            cur.execute(query, values)
+        
         con.commit()
         cd = cur.description
         output = cur.fetchall()
@@ -57,7 +63,7 @@ def execute(query):
 
     except Exception as e:
         # con.rollback()
-        print(f"{colours.bcolors.FAIL}ERROR: {colours.bcolors.ENDC}", e)
+        print(f"{colours.bcolors.FAIL}>>{colours.bcolors.ENDC}", e)
         return -1
 def closeconnection():
       con.close()

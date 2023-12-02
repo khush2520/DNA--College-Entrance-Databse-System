@@ -3,7 +3,7 @@ import colours
 from insert import insert
 from delete import delete
 from update import update
-
+from conandexec import closeconnection
 def modify():
     while(1):
         tmp = sp.call('clear', shell = True)
@@ -30,7 +30,7 @@ def modify():
         elif ch == '4':
             return
         elif ch == '5':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 

@@ -43,7 +43,7 @@ def delete():
         elif ch == '3' or ch == 'back':
             return
         elif ch == '4' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 

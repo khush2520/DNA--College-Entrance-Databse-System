@@ -3,7 +3,7 @@ import colours
 import subprocess as sp
 from conandexec import execute
 from conandexec import closeconnection
-
+    
 def exam_dates():
     ExamName = input("Enter Exam Name: ")
     ExamDate = input("Enter Updated Exam Date: ")
@@ -27,17 +27,6 @@ def exam_reg():
         print("")
     return
 
-
-def c():
-    name = input("Enter Organisation name: ")
-    value = float(input("Enter Updated Market Value: "))
-
-    query = f"UPDATE Organisation SET Market_Value = {value} where Organisation_Name = '{name}'"
-
-    if execute(query) == 1:
-        print(f"{colours.bcolors.OKGREEN}Updated Database{colours.bcolors.ENDC}")
-        print("")
-    return
 
 
 def update():
@@ -65,7 +54,7 @@ def update():
         elif ch == '4' or ch == 'back':
             return
         elif ch == '5' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 

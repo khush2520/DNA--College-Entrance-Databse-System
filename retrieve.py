@@ -4,7 +4,7 @@ from selection import selection
 from projection import projection
 from aggregate import aggregate
 from search import search
-
+from conandexec import closeconnection
 def retrieve():
     while(1):
         tmp = sp.call('clear', shell = True)
@@ -33,7 +33,7 @@ def retrieve():
         elif ch == '5' or ch == 'back':
             return
         elif ch == '6' or ch == 'exit':
-            exit()
+            closeconnection()
         else:
             print(f"{colours.bcolors.RED}Invalid Option{colours.bcolors.ENDC}")
 
