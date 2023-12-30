@@ -1,3 +1,5 @@
+Running Miniworld.py from the project directory in a terminal automatically connects to and populates the database, and also starts the Command Line Interface.
+The user will be required to log in with their MySql Credentials for authentication. Below we give an overview of the implemented functions in our database.
 # DNA
 
 Functions implemented:
