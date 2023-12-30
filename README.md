@@ -40,8 +40,8 @@ update:
 
 
 
-**retrieve:
-**
+**retrieve:**
+
 selection:
 1. Colleges with median placement > 10 LPA
 2. College Rankings where IIT Madras is in top colleges
